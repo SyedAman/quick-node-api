@@ -1,10 +1,13 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 
 const app = express();
-const port = 9000;
-const database = {};
+app.use(bodyParser.json());
 
-require('./routes')(app, database);
+const database = {};
+require("./routes")(app, database);
+
+const port = 9000;
 
 app.listen(port, () => {
   console.log(`server running on http://localhost:${port}`);
