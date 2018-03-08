@@ -2,14 +2,14 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const MongoClient = require("mongodb").MongoClient;
 
-const db = require("./config/db");
+const databaseConfig = require("./config/db");
 
 const app = express();
 app.use(bodyParser.json());
 
 const port = 9000;
 
-MongoClient.connect(db.url, (err, database) => {
+MongoClient.connect(databaseConfig.url, (err, database) => {
   if (err) return console.log(err);
 
   require("./routes")(app, database.db("note-api"));
