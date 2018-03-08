@@ -19,4 +19,12 @@ module.exports = (app, db) => {
 
     res.status(200).send(newNote);
   });
+
+  app.get("/note", (req, res) => {
+    db.collection("notes").find({}).toArray((err, allNotes) => {
+      if (err) throw new Error(err);
+
+      res.status(200).send(allNotes)
+    });
+  })
 };
