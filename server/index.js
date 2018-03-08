@@ -12,7 +12,7 @@ const port = 9000;
 MongoClient.connect(db.url, (err, database) => {
   if (err) return console.log(err);
 
-  require("./routes")(app, database);
+  require("./routes")(app, database.db("note-api"));
 
   app.listen(port, () => {
     console.log(`server running on http://localhost:${port}`);
